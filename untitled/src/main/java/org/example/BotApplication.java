@@ -11,14 +11,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BotApplication {
-    public void start (final String token) throws LoginException {
-        JDABuilder.createDefault(token,getIntents())
-                .addEventListeners(new CommandListener(),new ChangeNickname())
+    public void start(final String token) throws LoginException {
+        JDABuilder.createDefault(token, getIntents())
+                .addEventListeners(new CommandListener(), new ChangeNickname())
                 .enableCache(CacheFlag.ACTIVITY)
                 .build();
 
     }
-    private List<GatewayIntent> getIntents(){
+
+    private List<GatewayIntent> getIntents() {
         return Arrays.asList(GatewayIntent.values());
     }
 }

@@ -11,7 +11,7 @@ public class ChangeNickname extends ListenerAdapter {
     public void onGuildMemberUpdate(@NotNull GuildMemberUpdateEvent event) {
         Member member = event.getMember();
         String newNickname = event.getMember().getNickname();
-        if (newNickname == null){
+        if (newNickname == null) {
             return;
         }
 

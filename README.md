@@ -1,6 +1,6 @@
 # DiscordBot
 My first discord bot
-Features 👇
+Features 👉
 Commands -!mute
          -!umute
          -Change someone's nickname to what you want

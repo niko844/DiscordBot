@@ -1,5 +1,5 @@
 # DiscordBot
-My first discord bot
+My first discord bot.
 Features 👉
 Commands -!mute
          -!umute

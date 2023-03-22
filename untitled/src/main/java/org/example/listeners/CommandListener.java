@@ -14,7 +14,7 @@ public class CommandListener extends ListenerAdapter {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         String[] commands = {"!mute", "!unmute"};
         String message = event.getMessage().getContentRaw();
-        if (message.startsWith(commands[0]) || message.startsWith(commands[1])) {
+        if (message.contains("!")) {
             boolean hasPerm = event.getMember().getRoles().stream().anyMatch(x -> x.getId().equals("1087489669333262407"));
             if (event.getMember().getUser().isBot()) {
                 return;
@@ -25,13 +25,14 @@ public class CommandListener extends ListenerAdapter {
 
                 Role memberRole = event.getGuild().getRoleById("1087098870665846854");
                 Role mutedRole = event.getGuild().getRoleById("1087098912369819738");
-                Member member;
+                Member member = tryCatch(event);
+                if (member == null){
+                    return;
+                }
                 if ("!mute".equals(commandName)) {
-                    member = tryCatch(event);
                     activity.mute(event, mutedRole, memberRole, member);
 
                 } else if ("!unmute".equals(commandName)) {
-                    member = tryCatch(event);
                     activity.unMute(event, mutedRole, memberRole, member);
                 }
 

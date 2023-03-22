@@ -25,11 +25,11 @@ public class Activity {
 
     public void unMute(MessageReceivedEvent event, Role muted, Role memberRole, Member member) {
         String content;
-        if (member.getRoles().stream().anyMatch(x -> x.getId().equals("1087098870665846854"))) {
-            content = "is not muted";
-            announce(event, member, content);
-        } else if (member.getRoles().stream().anyMatch(x -> x.getId().equals("1087489669333262407"))) {
+        if (member.getRoles().stream().anyMatch(x -> x.getId().equals("1087489669333262407"))) {//member.getRoles().stream().anyMatch(x -> x.getId().equals("1087489669333262407"))
             content = "You can't unmute this user!";
+            announce(event, member, content);
+        } else if (member.getRoles().stream().anyMatch(x -> x.getId().equals("1087098870665846854"))) {
+            content = "is not muted";
             announce(event, member, content);
         } else {
             muted.getGuild().removeRoleFromMember(member.getUser(), muted).queue();

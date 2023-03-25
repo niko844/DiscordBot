@@ -15,7 +15,7 @@ public class ChangeNickname extends ListenerAdapter {
             return;
         }
 
-        if (!newNickname.equals("dupe davec") && member.getId().equals("676073599823773706")) {
+        if (!newNickname.equals("dupe davec") && member.getId().equals("340461184576913418")) {
             String oldNickname = "dupe davec";
             Guild guild = member.getGuild();
             guild.modifyNickname(member, oldNickname).queue();

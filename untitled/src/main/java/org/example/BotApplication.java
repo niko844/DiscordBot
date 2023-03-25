@@ -1,22 +1,28 @@
 package org.example;
 
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.example.listeners.ChangeNickname;
-import org.example.listeners.CommandListener;
+import org.example.commands.CommandListener;
 
 import javax.security.auth.login.LoginException;
 import java.util.Arrays;
 import java.util.List;
 
 public class BotApplication {
-    public void start(final String token) throws LoginException {
-        JDABuilder.createDefault(token, getIntents())
-                .addEventListeners(new CommandListener(), new ChangeNickname())
-                .enableCache(CacheFlag.ACTIVITY)
-                .build();
+    public static JDA jda;
 
+    public void start(final String token) throws LoginException, InterruptedException {
+        CommandListener commandListener = new CommandListener();
+        jda = JDABuilder.createDefault(token, getIntents())
+                .addEventListeners(commandListener, new ChangeNickname())
+                .enableCache(CacheFlag.ACTIVITY)
+                .build()
+                .awaitReady();
+
+        commandListener.addCommands();
     }
 
     private List<GatewayIntent> getIntents() {
